@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import './components/Pages.css';
 const GridWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -10,10 +11,8 @@ const GridWrapper = styled.div`
   grid-auto-rows: minmax(25px, auto);
 `; 
 export const About = () => (
-  <GridWrapper>
-    <h2>About Page</h2>
-    <p>State at ceiling lay on arms while you're using the keyboard so this human feeds me.</p>
-    <p>I am a kitty cat, sup, feed me, no cares in the world</p>
-    <p>Meow meow, I tell my human purr for no reason but to chase after</p>
-  </GridWrapper>
+    <div className="padding">
+        <h2>About Page</h2>
+        <p>This is a chatbot made by Ryan Kee, Albert Su, Christianna Xu, and Emma Yokota</p>
+    </div>
 )
