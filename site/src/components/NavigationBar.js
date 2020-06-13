@@ -23,9 +23,10 @@ export const NavigationBar = () => (
     <Navbar expand="lg">
       <Navbar.Brand href="/">coronacare.ai</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
+      {/* Search Bar */}
+      {/* <Form className="form-center">
         <FormControl type="text" placeholder="Search" className="" />
-      </Form>
+      </Form> */}
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
