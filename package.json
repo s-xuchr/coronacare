@@ -1,0 +1,25 @@
+{
+  "name": "coronacare",
+  "version": "1.0.0",
+  "description": "COVID-19 mental health chatbot",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jovo-platform-facebookmessenger": "^3.0.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-xuchr/coronacare.git"
+  },
+  "author": "Albert S, Christianna X, Emma Y, and Ryan K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s-xuchr/coronacare/issues"
+  },
+  "homepage": "https://github.com/s-xuchr/coronacare#readme"
+}
