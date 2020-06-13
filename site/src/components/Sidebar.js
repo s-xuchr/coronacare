@@ -1,6 +1,7 @@
 import React from 'react';
 import NavItem from './NavItem.js';
 import styled from "styled-components";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 /* This defines the actual bar going down the screen */
 const StyledSideNav = styled.div`
   position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
@@ -17,7 +18,7 @@ class SideNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          activePath: '/',
+          activePath: props.location.pathname,
           items: [
             {
               path: '/', /* path is used as id to check which NavItem is active basically */
@@ -61,10 +62,12 @@ class SideNav extends React.Component {
     }
 }
 
+const RouterSideNav = withRouter(SideNav);
+
 export default class Sidebar extends React.Component {
   render() {
     return (
-        <SideNav></SideNav>
+        <RouterSideNav></RouterSideNav>
     );
   }
 }
