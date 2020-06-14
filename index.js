@@ -164,9 +164,9 @@ app.post('/', (req, res) => {
               console.log(intentname);
 
               if(intentname === 'greetingIntent') {
-                fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
+                fbMessage(sender, "Hi, this is Coronacare, a chatbot that helps you stay in touch with COVID-19 info and resources! May I get your name?");
               } else if(intentname === 'getNameIntent') {
-                fbMessage(sender, "Nice to meet you, " + entities["name:name"][0].body + "! How may I help you?");
+                fbMessage(sender, "Nice to meet you, " + entities["name:name"][0].body + "! How may I help you? Try asking something about COVID-19 and your mental health.");
               } else if (intentname === 'preventionIntent') {
                 fbMessage(sender, "The World Health Organization provides advice for COVID-19 prevention and safety at https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
               } else if (intentname === 'mentalHealthIntent') {
@@ -220,7 +220,7 @@ app.post('/', (req, res) => {
                       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
 
-                    fbMessage(sender, "There are currently " + numberWithCommas(deaths) + " total deaths worldwide with " + numberWithCommas(cases) + " total cases, making coronavirus have a " + percentage.toFixed(2) + "% lethality rate at the moment").catch(() => {});
+                    fbMessage(sender, "There are currently " + numberWithCommas(deaths) + " total deaths worldwide with " + numberWithCommas(cases) + " total cases, making coronavirus have a " + percentage.toFixed(2) + "% lethality rate right now").catch(() => {});
                   }
                 }
               } else if (text === "beam me up scotty") {
@@ -230,7 +230,7 @@ app.post('/', (req, res) => {
               }
 
               else {
-                fbMessage(sender, `We've received your message: ${text}, but weren't able to process it. Please try again with more specific words. Thanks!`);
+                fbMessage(sender, `We've received your message: '${text}', but weren't able to process it. Please try again with more specific words. Thanks!`);
               }
             })
             .catch((err) => {
