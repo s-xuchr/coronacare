@@ -24,7 +24,12 @@ try {
 const PORT = process.env.PORT || 8445;
 
 // Wit.ai parameters
+<<<<<<< HEAD
 const WIT_TOKEN = 'KCJEZQX3I5XGQJKTLTPTO2EXNQE6CH4T';
+=======
+// NEED TO CHANGE THIS BASED ON YOUR SERVER
+const WIT_TOKEN = 'GZFTRT7V43TLTMOLPVSF27UL7RUSRFBC';
+>>>>>>> refs/remotes/origin/master
 
 // Messenger API parameters
 const FB_PAGE_TOKEN = 'EAAkbrgV33TIBABzpqJ0ildsYw2ziZAuQWR0A9UQVYsBKB18YgMEnCWFw5qFqK9WIaplA5F6QcsSqi9SKWzZBbMyfy3zBemveWgPZBPj6zvjaFMuFJquQ1OZCZAmpikkHO4HjPGWF1iCBKusd7ZAU6YF1oJyHx9cisr6vykE7IVkAZDZD';
@@ -64,6 +69,20 @@ const fbMessage = (id, text) => {
     return json;
   });
 };
+
+function getCovidData() {
+  var request = new XMLHttpRequest()
+  request.open('GET', 'https://thevirustracker.com/free-api?global=stats', true);
+  var total_cases;
+  request.onload = function() {
+    var data = JSON.parse(this.response);
+    data.forEach(results => {
+      total_cases = results.total_cases;
+    })
+  }
+  fbMessage(sender, total_cases);
+  request.send();
+}
 
 // ----------------------------------------------------------------------------
 // Coronavirus Stats API code
@@ -181,7 +200,33 @@ app.post('/', (req, res) => {
               fbMessage(intentname);
               if(intentname === 'greetingIntent') {
                 fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
+              } else if(intentname === 'getNameIntent') {
+                fbMessage(sender, "Nice to meet you, " + text + "! How may I help you?");
+              } else if (intentname === 'preventionIntent') {
+                fbMessage(sender, "The World Health Organization provides advice for COVID-19 prevention and safety at https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
+              } else if (intentname === 'mentalHealthIntent') {
+                fbMessage(sender, "I'm so sorry to hear that. There are plenty of therapists available at https://www.psychologytoday.com/us/therapists, based on your location.");
+              } else if (intentname === 'matchTherapistIntent') {
+                fbMessage(sender, "There are plenty of therapists available at https://www.psychologytoday.com/us/therapists, based on your location.")
+              } else if (intentname === 'covidFatalChancesIntent') {
+                fbMessage(sender, "Older individuals or those with other health conditions have a higher chance of dying from COVID-19. For more information, visit https://www.bbc.com/news/health-51674743");
+              } else if (intentname === 'highRiskIntent') {
+                fbMessage(sender, "Check out this resource provided by Mather Hospital: https://www.matherhospital.org/wellness-at-mather/what-are-your-chances-of-catching-covid-19/");
+              } else if (intentname === 'maskRegulationsIntent') {
+                fbMessage(sender, "Masks are highly recommended in public settings to protect yourself and others. Visit the World Health Organization's recommendation here https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks");
+              } else if (intentname === 'quarantineIntent') {
+                fbMessage(sender, "Check out this compiled list of online games to play during quarantine! https://docs.google.com/document/u/1/d/10iOD7Wy_YU4NmkPU7ZH7YTrq11qJAANjZZ0PAotKhR8/mobilebasic");
+              } else if (intentname === 'getCovidCasesIntent') {
+                fbMessage(sender, 'testing');
+              } else if (intentname === 'getCovidDeathsIntent') {
+                fbMessage(sender, 'testing2');
               }
+              
+              else {
+                fbMessage(sender, `We've received your message: ${text}.`);
+              }
+<<<<<<< HEAD
+=======
 
               if (intentname === "preventionIntent") {
 
@@ -192,6 +237,7 @@ app.post('/', (req, res) => {
               }
 
               fbMessage(sender, `We've received your message: ${text}.`);
+>>>>>>> a21ee549c703e5d7e1611f2b0c05eb44a02c9245
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
