@@ -190,12 +190,15 @@ app.post('/', (req, res) => {
                 Http.send();
                 Http.onreadystatechange=(e)=>{
                   const result = Http.responseText;
-                  console.log(result.type);
                   fbMessage(sender, result);
                 }
               } else if (intentname === 'getCovidDeathsIntent') {
                 //FIXME
                 fbMessage(sender, 'testing2');
+              } else if (text === "beam me up scotty") {
+                fbMessage(sender, "hi aunty");
+              } else if (intentname === 'funIntent') {
+                fbMessage(sender, 'So many coronavirus jokes out there, it’s a pundemic.');
               }
               
               else {
