@@ -224,8 +224,12 @@ app.post('/', (req, res) => {
                 fbMessage(sender, "hi aunty");
               } else if (intentname === 'funIntent') {
                 fbMessage(sender, 'So many coronavirus jokes out there, it’s a pundemic.');
+              } else if (text === 'first rule about coronaclub we don\'t talk about coronaclub') {
+                fbMessage(sender, 'u rite');
+              } 
+              else if (intentname === 'movieRecIntent') {
+                fbMessage(sender, 'If you haven\'t seen it yet already, Inside Out is a great Pixar movie!')
               }
-
               else {
                 fbMessage(sender, `We've received your message: '${text}', but weren't able to process it. Please try again with more specific words. Thanks!`);
               }
