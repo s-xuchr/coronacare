@@ -4,19 +4,6 @@
 
 'use strict';
 
-// Messenger API integration example
-// We assume you have:
-// * a Wit.ai bot setup (https://wit.ai/docs/quickstart)
-// * a Messenger Platform setup (https://developers.facebook.com/docs/messenger-platform/quickstart)
-// You need to `npm install` the following dependencies: body-parser, express, node-fetch.
-//
-// 1. npm install body-parser express node-fetch
-// 2. Download and install ngrok from https://ngrok.com/download
-// 3. ./ngrok http 8445
-// 4. WIT_TOKEN=your_access_token FB_APP_SECRET=your_app_secret FB_PAGE_TOKEN=your_page_token node examples/messenger.js
-// 5. Subscribe your page to the Webhooks using verify_token and `https://<your_ngrok_io>/webhook` as callback URL.
-// 6. Talk to your bot on Messenger!
-
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const express = require('express');
@@ -164,9 +151,20 @@ app.post('/', (req, res) => {
               console.log(intents);
               console.log(entities);
               console.log(traits);
-              console.log(text);
-              console.log(sender);
               // For now, let's reply with another automatic message
+
+              let intentname = "undefined";
+
+              if(intents.length >= 1) {
+                intentname = intents[0].name;
+              }
+
+              console.log(intentname);
+
+              if(intentname === 'greetingIntent') {
+                fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
+              }
+
               fbMessage(sender, `We've received your message: ${text}.`);
             })
             .catch((err) => {
