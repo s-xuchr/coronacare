@@ -21,7 +21,7 @@ try {
 }
 
 // Webserver parameter
-const PORT = process.env.PORT || 8445;
+const PORT = process.env.PORT || 3000;
 
 // Wit.ai parameters
 const WIT_TOKEN = 'ZAIMSMIZL65IR5XEGC7QENDCPDFRTAVV';
@@ -163,6 +163,9 @@ app.post('/', (req, res) => {
 
               if(intentname === 'greetingIntent') {
                 fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
+              }
+              if(intentname === 'getNameIntent') {
+                fbMessage(sender, "Nice to meet you, " + intentname + "!");
               }
 
               fbMessage(sender, `We've received your message: ${text}.`);
