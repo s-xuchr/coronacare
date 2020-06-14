@@ -28,14 +28,14 @@ class SideNav extends React.Component {
             },
             {
               path: '/about',
-              name: 'About',
-              css: 'fa fa-fw fa-clock',
+              name: 'About the Product',
+              css: 'fa fa-fw fa-cog',
               key: 2
             },
             {
-              path: '/NoMatch',
-              name: 'NoMatch',
-              css: 'fas fa-hashtag',
+              path: '/contact',
+              name: 'Contact Us',
+              css: 'fas fa-address-book',
               key: 3
             },
           ]

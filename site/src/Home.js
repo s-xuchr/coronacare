@@ -11,8 +11,8 @@ const GridWrapper = styled.div`
 `;
 export const Home = (props) => (
     <div className="padding">
-        <h1>Welcome</h1>
-        <p>Feel free to use our chatbot at (paste link here)</p>
+        <h1 style={{fontFamily: 'Verdana', backgroundColor: 'lightgray'}}>Welcome</h1>
+        <p style={{fontFamily: 'Verdana'}}>Feel free to use our chatbot at (paste link here)</p>
     </div>
     
 )
