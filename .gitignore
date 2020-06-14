@@ -2,3 +2,4 @@ ngrok.exe
 node_modules/
 # Local Netlify folder
 .netlify
+.env

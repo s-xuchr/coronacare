@@ -9,6 +9,7 @@ const crypto = require('crypto');
 const express = require('express');
 const fetch = require('node-fetch');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+require('dotenv').config();
 
 let Wit = null;
 let log = null;
@@ -26,12 +27,12 @@ const PORT = process.env.PORT || 8445;
 
 // Wit.ai parameters
 // NEED TO CHANGE THIS BASED ON YOUR SERVER
-const WIT_TOKEN = 'GZFTRT7V43TLTMOLPVSF27UL7RUSRFBC';
+const WIT_TOKEN = process.env.WIT_TOKEN;
 
 // Messenger API parameters
-const FB_PAGE_TOKEN = 'EAAkbrgV33TIBABzpqJ0ildsYw2ziZAuQWR0A9UQVYsBKB18YgMEnCWFw5qFqK9WIaplA5F6QcsSqi9SKWzZBbMyfy3zBemveWgPZBPj6zvjaFMuFJquQ1OZCZAmpikkHO4HjPGWF1iCBKusd7ZAU6YF1oJyHx9cisr6vykE7IVkAZDZD';
+const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
 if (!FB_PAGE_TOKEN) { throw new Error('missing FB_PAGE_TOKEN') }
-const FB_APP_SECRET = '298f090090cf1708e5a62bb81e01e9e9';
+const FB_APP_SECRET = process.env.FB_APP_SECRET;
 if (!FB_APP_SECRET) { throw new Error('missing FB_APP_SECRET') }
 
 let FB_VERIFY_TOKEN = null;
