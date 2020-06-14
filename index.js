@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const express = require('express');
 const fetch = require('node-fetch');
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 let Wit = null;
 let log = null;
@@ -165,7 +166,7 @@ app.post('/', (req, res) => {
               if(intentname === 'greetingIntent') {
                 fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
               } else if(intentname === 'getNameIntent') {
-                fbMessage(sender, "Nice to meet you, " + text + "! How may I help you?");
+                fbMessage(sender, "Nice to meet you, " + entities["name:name"][0].body + "! How may I help you?");
               } else if (intentname === 'preventionIntent') {
                 fbMessage(sender, "The World Health Organization provides advice for COVID-19 prevention and safety at https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public");
               } else if (intentname === 'mentalHealthIntent') {
@@ -182,27 +183,54 @@ app.post('/', (req, res) => {
                 fbMessage(sender, "Check out this compiled list of online games to play during quarantine! https://docs.google.com/document/u/1/d/10iOD7Wy_YU4NmkPU7ZH7YTrq11qJAANjZZ0PAotKhR8/mobilebasic");
               } else if (intentname === 'getCovidCasesIntent') {
                 //FIXME
-                var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-                const Http = new XMLHttpRequest();
+                var Http = new XMLHttpRequest();
                 const url = 'https://api.thevirustracker.com/free-api?global=stats';
                 Http.open("GET", url);
                 Http.responseType = 'json';
                 Http.send();
                 Http.onreadystatechange=(e)=>{
-                  const result = Http.responseText;
-                  fbMessage(sender, result);
+                  if (Http.readyState == 4 && Http.status == 200) {
+                    var result = Http.responseText;
+                    var responseObj = JSON.parse(result);
+                    var cases = responseObj.results[0].total_cases;
+
+                    function numberWithCommas(x) {
+                      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+
+                    fbMessage(sender, "There are currently " + numberWithCommas(cases) + " total cases worldwide.").catch(() => {});
+                  }
                 }
               } else if (intentname === 'getCovidDeathsIntent') {
                 //FIXME
-                fbMessage(sender, 'testing2');
+                var Http = new XMLHttpRequest();
+                const url = 'https://api.thevirustracker.com/free-api?global=stats';
+                Http.open("GET", url);
+                Http.responseType = 'json';
+                Http.send();
+                Http.onreadystatechange=(e)=>{
+                  if (Http.readyState == 4 && Http.status == 200) {
+                    var result = Http.responseText;
+                    var responseObj = JSON.parse(result);
+                    var deaths = responseObj.results[0].total_deaths;
+                    var cases = responseObj.results[0].total_cases;
+                    var percentage = deaths/cases * 100;
+
+                    function numberWithCommas(x) {
+                      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
+
+                    fbMessage(sender, "There are currently " + numberWithCommas(deaths) + " total deaths worldwide with " + numberWithCommas(cases) + " total cases, making coronavirus have a " + percentage.toFixed(2) + "% lethality rate at the moment").catch(() => {});
+                  }
+                }
               } else if (text === "beam me up scotty") {
                 fbMessage(sender, "hi aunty");
               } else if (intentname === 'funIntent') {
                 fbMessage(sender, 'So many coronavirus jokes out there, it’s a pundemic.');
               }
-              
+
               else {
-                fbMessage(sender, `We've received your message: ${text}.`);
+                fbMessage(sender, `We've received your message: ${text}, but weren't able to process it. Please try again with more specific words. Thanks!`);
               }
             })
             .catch((err) => {
