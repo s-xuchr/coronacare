@@ -24,7 +24,7 @@ try {
 const PORT = process.env.PORT || 8445;
 
 // Wit.ai parameters
-const WIT_TOKEN = 'ZAIMSMIZL65IR5XEGC7QENDCPDFRTAVV';
+const WIT_TOKEN = 'KCJEZQX3I5XGQJKTLTPTO2EXNQE6CH4T';
 
 // Messenger API parameters
 const FB_PAGE_TOKEN = 'EAAkbrgV33TIBABzpqJ0ildsYw2ziZAuQWR0A9UQVYsBKB18YgMEnCWFw5qFqK9WIaplA5F6QcsSqi9SKWzZBbMyfy3zBemveWgPZBPj6zvjaFMuFJquQ1OZCZAmpikkHO4HjPGWF1iCBKusd7ZAU6YF1oJyHx9cisr6vykE7IVkAZDZD';
@@ -64,6 +64,24 @@ const fbMessage = (id, text) => {
     return json;
   });
 };
+
+// ----------------------------------------------------------------------------
+// Coronavirus Stats API code
+// https://thevirustracker.com/free-api?global=stats
+
+function getCovidData() {
+  var request = new XMLHttpRequest()
+  request.open('GET', 'https://thevirustracker.com/free-api?global=stats', true);
+  var total_cases;
+  request.onload = function() {
+    var data = JSON.parse(this.response);
+    data.forEach(results => {
+      total_cases = results.total_cases;
+    })
+  }
+  fbMessage(total_cases);
+  request.send();
+}
 
 // ----------------------------------------------------------------------------
 // Wit.ai bot specific code
@@ -160,13 +178,17 @@ app.post('/', (req, res) => {
               }
 
               console.log(intentname);
-
+              fbMessage(intentname);
               if(intentname === 'greetingIntent') {
                 fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
               }
 
               if (intentname === "preventionIntent") {
-                
+
+              }
+
+              if (intentname === "getCovidCasesIntent") {
+                getCovidData();
               }
 
               fbMessage(sender, `We've received your message: ${text}.`);
