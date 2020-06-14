@@ -203,6 +203,15 @@ app.post('/', (req, res) => {
               else {
                 fbMessage(sender, `We've received your message: ${text}.`);
               }
+<<<<<<< HEAD
+=======
+
+              if (intentname === "preventionIntent") {
+                
+              }
+
+              fbMessage(sender, `We've received your message: ${text}.`);
+>>>>>>> a21ee549c703e5d7e1611f2b0c05eb44a02c9245
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
