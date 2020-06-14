@@ -1,7 +1,3 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
- */
-
 'use strict';
 
 const bodyParser = require('body-parser');
