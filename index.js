@@ -21,7 +21,7 @@ try {
 }
 
 // Webserver parameter
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8445;
 
 // Wit.ai parameters
 const WIT_TOKEN = 'ZAIMSMIZL65IR5XEGC7QENDCPDFRTAVV';

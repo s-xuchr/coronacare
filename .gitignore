@@ -1,1 +1,4 @@
 ngrok.exe
+
+# Local Netlify folder
+.netlify
