@@ -165,6 +165,10 @@ app.post('/', (req, res) => {
                 fbMessage(sender, "Hi, this is Coronacare! May I get your name?");
               }
 
+              if (intentname === "preventionIntent") {
+                
+              }
+
               fbMessage(sender, `We've received your message: ${text}.`);
             })
             .catch((err) => {
