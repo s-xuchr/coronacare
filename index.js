@@ -201,18 +201,9 @@ function verifyRequestSignature(req, res, buf) {
     var method = elements[0];
     var signatureHash = elements[1];
 
-<<<<<<< HEAD
-//app.use(
-  //new FacebookMessenger()
-  // new WitAiSlu({
-  //     token: 'yourToken'
-  // })
-//);
-=======
     var expectedHash = crypto.createHmac('sha1', FB_APP_SECRET)
                         .update(buf)
                         .digest('hex');
->>>>>>> cb1a61a1d2de30d2d74b9aa6941c513b651bef8a
 
     if (signatureHash != expectedHash) {
       throw new Error("Couldn't validate the request signature.");
