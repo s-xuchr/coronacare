@@ -7,6 +7,6 @@ import styled from 'styled-components';
 // `;
 export const NoMatch = () => (
   <div className="padding">
-    <h2>Contact Us</h2>
+    <h1 style={{fontFamily: 'Verdana', backgroundColor: 'lightgray'}}>Contact Us</h1>
   </div>
 )
