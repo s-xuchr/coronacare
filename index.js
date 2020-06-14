@@ -66,20 +66,6 @@ const fbMessage = (id, text) => {
   });
 };
 
-function getCovidData() {
-  var request = new XMLHttpRequest()
-  request.open('GET', 'https://thevirustracker.com/free-api?global=stats', true);
-  var total_cases;
-  request.onload = function() {
-    var data = JSON.parse(this.response);
-    data.forEach(results => {
-      total_cases = results.total_cases;
-    })
-  }
-  fbMessage(sender, total_cases);
-  request.send();
-}
-
 // ----------------------------------------------------------------------------
 // Wit.ai bot specific code
 
@@ -195,23 +181,26 @@ app.post('/', (req, res) => {
               } else if (intentname === 'quarantineIntent') {
                 fbMessage(sender, "Check out this compiled list of online games to play during quarantine! https://docs.google.com/document/u/1/d/10iOD7Wy_YU4NmkPU7ZH7YTrq11qJAANjZZ0PAotKhR8/mobilebasic");
               } else if (intentname === 'getCovidCasesIntent') {
-                fbMessage(sender, 'testing');
+                //FIXME
+                var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+                const Http = new XMLHttpRequest();
+                const url = 'https://api.thevirustracker.com/free-api?global=stats';
+                Http.open("GET", url);
+                Http.responseType = 'json';
+                Http.send();
+                Http.onreadystatechange=(e)=>{
+                  const result = Http.responseText;
+                  console.log(result.type);
+                  fbMessage(sender, result);
+                }
               } else if (intentname === 'getCovidDeathsIntent') {
+                //FIXME
                 fbMessage(sender, 'testing2');
               }
               
               else {
                 fbMessage(sender, `We've received your message: ${text}.`);
               }
-<<<<<<< HEAD
-=======
-
-              if (intentname === "preventionIntent") {
-                
-              }
-
-              fbMessage(sender, `We've received your message: ${text}.`);
->>>>>>> a21ee549c703e5d7e1611f2b0c05eb44a02c9245
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
