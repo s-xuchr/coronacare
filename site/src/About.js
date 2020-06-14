@@ -13,6 +13,14 @@ const GridWrapper = styled.div`
 export const About = () => (
     <div className="padding">
         <h2>About Page</h2>
-        <p>This is a chatbot made by Ryan Kee, Albert Su, Christianna Xu, and Emma Yokota</p>
+        <p> coronacare.ai is a Facebook Messenger chatbot tailored specifically for those in need of assistance during the COVID-19 pandemic. </p> 
+        <p> Ask it questions about COVID-19 to get the latest news and data about the pandemic or simply prompt it for ways to spend your time while in quarantine. </p>
+        <p> Using the bot, you can: </p>
+        <ul>
+          <li> Ask questions about COVID-19 </li>
+          <li> Find local therapists and other resources to suit your needs </li>
+          <li> Request to join a support group </li>
+        </ul>
+        <p> To get started, message "Hello" to Coronacare.ai on Facebook messenger! </p>
     </div>
 )

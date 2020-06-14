@@ -29,13 +29,13 @@ class SideNav extends React.Component {
             {
               path: '/about',
               name: 'About the Product',
-              css: 'fa fa-fw fa-clock',
+              css: 'fa fa-fw fa-cog',
               key: 2
             },
             {
               path: '/contact',
               name: 'Contact Us',
-              css: 'fas fa-hashtag',
+              css: 'fas fa-address-book',
               key: 3
             },
           ]
