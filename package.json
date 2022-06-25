@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "jovo-platform-facebookmessenger": "^3.0.21",
     "jovo-slu-witai": "^3.0.17",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "node-wit": "^6.0.0",
     "request": "^2.88.2",
     "xmlhttprequest": "^1.8.0"
